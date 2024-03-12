@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 
-for dig in range(0, 100):
-    print("{}".format(dig), end="")
-    if (dig != 99):
-        print(", ", end="")
+for num in range(0, 100):
+    if (num != 99):
+        print("{:02}".format(num), end=", ")
+    else:
+        print("{}".format(num))
