@@ -7,7 +7,12 @@ def main():
     argv = sys.argv
     argv_len = len(argv) - 1
     ops = "+-*/"
-    funcs = [calculator_1.add, calculator_1.sub, calculator_1.mul, calculator_1.div]
+    funcs = [
+            calculator_1.add,
+            calculator_1.sub,
+            calculator_1.mul,
+            calculator_1.div
+            ]
 
     if (argv_len != 3):
         print("Usage: ./100-my_calculator.py <a> <operator> <b>")
