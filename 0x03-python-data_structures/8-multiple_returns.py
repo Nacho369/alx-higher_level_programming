@@ -8,7 +8,7 @@ def multiple_returns(sentence):
         first_ch = None
     else:
         first_ch = sentence[0]
-    
+
     str_len = len(sentence)
     tup_ret = (str_len, first_ch)
 
