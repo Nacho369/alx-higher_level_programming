@@ -12,4 +12,4 @@ def magic_calculation(a, b):
         except Exception:
             result = a + b
             break
-    return result#!/usr/bin/python3
+    return result
