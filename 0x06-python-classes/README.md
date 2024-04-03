@@ -16,4 +16,4 @@
 - A documentation is not a simple word, it’s a real sentence explaining what’s the purpose of the module, class or method (the length of it will be verified)
 
 ## More Info
-**Documentation is now mandatory!** Each module, class, and method must contain docstring as comments. (Example Google Style Python Docstrings)[https://intranet.alxswe.com/rltoken/dOO785g5EQYkRU2E1wri0g]
+**Documentation is now mandatory!** Each module, class, and method must contain docstring as comments. [Example Google Style Python Docstrings](https://intranet.alxswe.com/rltoken/dOO785g5EQYkRU2E1wri0g)
