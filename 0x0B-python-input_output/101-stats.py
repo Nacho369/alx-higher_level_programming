@@ -1,11 +1,14 @@
 #!/usr/bin/python3
+"""
+Defines a Log Parsin function
+"""
 import sys
 
 
 def print_status():
-    '''
+    """
         Printing the status of the request
-    '''
+    """
     counter = 0
     size = 0
     file_size = 0
