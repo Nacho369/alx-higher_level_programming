@@ -238,4 +238,6 @@ guillaume@ubuntu:~/$ ./101-main.py
 - If you get an error that looks like /usr/bin/xauth: timeout in locking authority file /home/vagrant/.Xauthority, then enter rm .Xauthority (you may have to sudo).
 - Logout and restart the vm with vagrant up --provision.
 - Test with xeyes. If Xquartz is installed on the Mac OS it should open in an Xquartz window.
-- It is your responsibility to request a review for this task from a peer before the project’s deadline. If no peers have been reviewed, you should request a review from a TA or staff member.
+
+It is your responsibility to request a review for this task from a peer before the project’s deadline. If no peers have been reviewed, you should request a review from a TA or staff member.
+
