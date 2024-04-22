@@ -109,17 +109,19 @@ class Base:
 
         try:
             with open(filename, "r", encoding="utf-8") as file_a:
-                data = cls.from_json_string(file_a.read())
-        except Exception:
+                list_dicts = Base.from_json_string(file_a.read())
+                return [cls.create(**data) for data in list_dicts]
+
+        except IOError:
             return []
 
         instance_list = []
 
-        for instance in data:
-            obj = cls.create(**instance)
-            instance_list.append(obj)
+        # for instance in data:
+        #     obj = cls.create(**instance)
+        #     instance_list.append(obj)
 
-        return (instance_list)
+        # return (instance_list)
 
     @classmethod
     def save_to_file_csv(cls, list_objs):
