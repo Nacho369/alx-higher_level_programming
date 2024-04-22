@@ -87,15 +87,22 @@ class Base:
         args:
             list_objs: Is a list of instances who inherits of Base
         """
-        file_name = cls.__name__ + ".json"
-        obj_json = []
+        filename = cls.__name__ + ".json"
+        # obj_json = []
 
-        for obj in list_objs:
-            obj = cls.to_json_string(obj.to_dictionary())
-            obj_json.append(json.loads(obj))
+        # for obj in list_objs:
+        #     obj = cls.to_json_string(obj.to_dictionary())
+        #     obj_json.append(json.loads(obj))
 
-        with open(file_name, "w", encoding="utf-8") as file_n:
-            json.dump(obj_json, file_n)
+        # with open(file_name, "w", encoding="utf-8") as file_n:
+        #     json.dump(obj_json, file_n)
+
+        with open(filename, "w") as jsonfile:
+            if list_objs is None:
+                jsonfile.write("[]")
+            else:
+                list_dicts = [o.to_dictionary() for o in list_objs]
+                jsonfile.write(Base.to_json_string(list_dicts))
 
     @classmethod
     def load_from_file(cls):
