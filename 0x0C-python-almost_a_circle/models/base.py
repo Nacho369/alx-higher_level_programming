@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """Defines a Base class"""
 import json
+import csv
 
 
 class Base:
@@ -38,6 +39,46 @@ class Base:
         json_str = json.dumps(list_dictionaries)
         return (json_str)
 
+    @staticmethod
+    def from_json_string(json_string):
+        """
+        Returns the list of the JSON string representation
+        json_string
+
+        args:
+            json_string: Is a string representing a list of dictionaries
+
+        Return: an empty list ([]) if json_string  is None or empty
+        Otherwise, return the list represented by json_string
+        """
+        if json_string is None or len(json_string) == 0:
+            return ("[]")
+
+        obj_str = json.loads(json_string)
+        return (obj_str)
+
+    @classmethod
+    def create(cls, **dictionary):
+        """
+        Returns an instance with all attributes already set
+
+        args:
+            **dictionary: Can be thought of as a double pointer
+            to a dictionary
+        """
+        from models.rectangle import Rectangle
+        from models.square import Square
+
+        if dictionary and dictionary != {}:
+            if cls.__name__ == "Rectangle":
+                instance = Rectangle(2, 5, 3)  # cls(2, 5, 3)
+            elif cls.__name__ == "Square":
+                instance = Square(3, 5, 1)  # cls(3, 5, 1)
+
+        instance.update(**dictionary)
+
+        return (instance)
+
     @classmethod
     def save_to_file(cls, list_objs):
         """
@@ -55,3 +96,65 @@ class Base:
 
         with open(file_name, "w", encoding="utf-8") as file_n:
             json.dump(obj_json, file_n)
+
+    @classmethod
+    def load_from_file(cls):
+        """
+        Loads the JSON string representation from a file
+        """
+        filename = cls.__name__ + ".json"
+
+        try:
+            with open(filename, "r", encoding="utf-8") as file_a:
+                data = cls.from_json_string(file_a.read())
+        except Exception:
+            return []
+
+        instance_list = []
+
+        for instance in data:
+            obj = cls.create(**instance)
+            instance_list.append(obj)
+
+        return (instance_list)
+
+    @classmethod
+    def save_to_file_csv(cls, list_objs):
+        """
+        Serialize in CSV
+
+        args:
+            Pyhton object to serialize
+        """
+        filename = cls.__name__ + ".csv"
+
+        with open(filename, "w", newline='', encoding="utf-8") as file_a:
+            write_to_file = csv.writer(file_a, delimiter=" ")
+
+            if cls.__name__ == "Rectangle":
+                for obj in list_objs:
+                    string = ""
+                    obj = obj.to_dictionary()
+                    string += (str(obj["id"]) + "," +
+                               str(obj["width"]) + "," +
+                               str(obj["height"]) + "," +
+                               str(obj["x"]) + "," +
+                               str(obj["y"]))
+                    write_to_file.writerow(string)
+
+            if cls.__name__ == "Square":
+                for obj in list_objs:
+                    string = ""
+                    obj = obj.to_dictionary()
+                    string += (str(obj["id"]) + "," +
+                               str(obj["size"]) + "," +
+                               str(obj["x"]) + "," +
+                               str(obj["y"]))
+                    write_to_file.writerow(string)
+
+    @classmethod
+    def load_from_file_csv(cls):
+        """
+        DeSerialize in CSV
+        """
+        return ([])
