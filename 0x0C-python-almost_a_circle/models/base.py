@@ -66,17 +66,13 @@ class Base:
             **dictionary: Can be thought of as a double pointer
             to a dictionary
         """
-        from models.rectangle import Rectangle
-        from models.square import Square
-
         if dictionary and dictionary != {}:
             if cls.__name__ == "Rectangle":
-                instance = Rectangle(2, 5, 3)  # cls(2, 5, 3)
+                instance = cls(2, 5)  # cls(2, 5, 3)
             elif cls.__name__ == "Square":
-                instance = Square(3, 5, 1)  # cls(3, 5, 1)
+                instance = cls(2)  # cls(3, 5, 1)
 
         instance.update(**dictionary)
-
         return (instance)
 
     @classmethod
