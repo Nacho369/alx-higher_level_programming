@@ -132,34 +132,33 @@ class Base:
             Pyhton object to serialize
         """
         filename = cls.__name__ + ".csv"
-
-        with open(filename, "w", newline='', encoding="utf-8") as file_a:
-            write_to_file = csv.writer(file_a, delimiter=" ")
-
-            if cls.__name__ == "Rectangle":
+        with open(filename, "w", newline="") as csvfile:
+            if list_objs is None or list_objs == []:
+                csvfile.write("[]")
+            else:
+                if cls.__name__ == "Rectangle":
+                    fieldnames = ["id", "width", "height", "x", "y"]
+                else:
+                    fieldnames = ["id", "size", "x", "y"]
+                writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
                 for obj in list_objs:
-                    string = ""
-                    obj = obj.to_dictionary()
-                    string += (str(obj["id"]) + "," +
-                               str(obj["width"]) + "," +
-                               str(obj["height"]) + "," +
-                               str(obj["x"]) + "," +
-                               str(obj["y"]))
-                    write_to_file.writerow(string)
-
-            if cls.__name__ == "Square":
-                for obj in list_objs:
-                    string = ""
-                    obj = obj.to_dictionary()
-                    string += (str(obj["id"]) + "," +
-                               str(obj["size"]) + "," +
-                               str(obj["x"]) + "," +
-                               str(obj["y"]))
-                    write_to_file.writerow(string)
+                    writer.writerow(obj.to_dictionary())
 
     @classmethod
     def load_from_file_csv(cls):
         """
         DeSerialize in CSV
         """
-        return ([])
+        filename = cls.__name__ + ".csv"
+        try:
+            with open(filename, "r", newline="") as csvfile:
+                if cls.__name__ == "Rectangle":
+                    fieldnames = ["id", "width", "height", "x", "y"]
+                else:
+                    fieldnames = ["id", "size", "x", "y"]
+                list_dicts = csv.DictReader(csvfile, fieldnames=fieldnames)
+                list_dicts = [dict([k, int(v)] for k, v in d.items())
+                              for d in list_dicts]
+                return [cls.create(**d) for d in list_dicts]
+        except IOError:
+            return []
