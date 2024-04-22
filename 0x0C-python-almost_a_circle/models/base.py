@@ -51,8 +51,8 @@ class Base:
         Return: an empty list ([]) if json_string  is None or empty
         Otherwise, return the list represented by json_string
         """
-        if json_string is None or len(json_string) == 0:
-            return ("[]")
+        if json_string is None or json_string == []:
+            return ([])
 
         obj_str = json.loads(json_string)
         return (obj_str)
