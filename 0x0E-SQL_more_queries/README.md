@@ -93,7 +93,7 @@ id  name
 $
 ```
 
-![Img]()
+![Img](https://github.com/Nacho369/alx-higher_level_programming/blob/main/0x0E-SQL_more_queries/img/bc2575fee3303b731031.png)
 
 
 ## Tasks
