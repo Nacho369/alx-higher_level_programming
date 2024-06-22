@@ -25,7 +25,8 @@ if __name__ == "__main__":
     rows = cursor.fetchall()
 
     for row in rows:
-        print(row)
+        if row[1] == state_name_arg:
+            print(row)
 
     cursor.close()
     conn.close()
