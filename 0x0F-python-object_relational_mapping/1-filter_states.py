@@ -17,7 +17,7 @@ if __name__ == "__main__":
 
     cursor = conn.cursor()
     cursor.execute(
-        "SELECT * FROM states WHERE name LIKE BINARY s'N%' ORDER BY id ASC"
+        "SELECT * FROM states WHERE name LIKE BINARY 'N%' ORDER BY id ASC"
         )
     rows = cursor.fetchall()
 
