@@ -26,8 +26,8 @@ if __name__ == "__main__":
 
     for row in rows:
         vals.append(row[0])
-    
+
     print(*vals, sep=", ")
 
     cursor.close()
-    conn.close()  
+    conn.close()
