@@ -13,6 +13,7 @@ class City(Base):
         Creates table for cities
     '''
     __tablename__ = "cities"
+
     id = Column(Integer, autoincrement=True,
                 primary_key=True, nullable=False)
     name = Column(String(128), nullable=False)
