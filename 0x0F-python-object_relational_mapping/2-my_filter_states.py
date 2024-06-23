@@ -9,24 +9,16 @@ from sys import argv
 
 
 if __name__ == "__main__":
-    state_name_arg = argv[4]
-
-    conn = MySQLdb.connect(
-        user=argv[1],
-        password=argv[2],
-        database=argv[3],
-        host="localhost",
-        port=3306
-    )
+    conn = MySQLdb.connect(host="localhost", user=argv[1],
+                           passwd=argv[2], db=argv[3], port=3306)
 
     cursor = conn.cursor()
-    query = "SELECT * FROM states WHERE name LIKE %s ORDER BY id ASC"
-    cursor.execute(query, (f'{state_name_arg}',))
+    cursor.execute("SELECT * FROM states WHERE name LIKE BINARY '{}'"
+                   .format(sys.argv[4]))
     rows = cursor.fetchall()
 
     for row in rows:
-        if row[1] == state_name_arg:
-            print(row)
+        print(row)
 
     cursor.close()
     conn.close()
