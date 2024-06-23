@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """
-A script that prints the first State
-object from the database hbtn_0e_6_usa
+A script that deletes all State objects
+with a name containing the letter a from the database
 """
 from sqlalchemy import create_engine, desc, Column, Integer, String
 from sqlalchemy.orm import sessionmaker

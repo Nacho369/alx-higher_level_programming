@@ -1,5 +1,7 @@
 #!/usr/bin/python3
-"""Start link class to table in database
+"""
+A Python file similar to model_state.py named
+model_city.py that contains the class definition of a City
 """
 from sys import argv
 from model_state import Base, State
