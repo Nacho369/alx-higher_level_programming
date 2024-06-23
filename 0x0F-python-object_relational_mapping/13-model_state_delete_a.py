@@ -17,15 +17,13 @@ if __name__ == "__main__":
 
     Session = sessionmaker(bind=engine)
     session = Session()
+    char = 'a'
 
     queryState = (
-        session.query(State).filter_by(id=2).all()
+        session.query(State)
+        .filter(State.name.like(f'%{char}%'))
+        .delete()
     )
 
-    for state in queryState:
-        state.name = "New Mexico"
-
-    session.add(state)
     session.commit()
-
     session.close()
